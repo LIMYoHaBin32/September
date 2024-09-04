@@ -1,0 +1,57 @@
+*포인터 예제 코드
+1.
+#include <stdio.h>
+ 
+int main(void)
+{
+    int num = 10;
+ 
+    printf("%p\n", &num);
+ 
+    return 0;
+}
+
+2.
+#include <stdio.h>
+ 
+int main(void) {
+ 
+    int num;    // 일반 변수 선언
+    int * pnum;    // 포인터 선언
+    
+    pnum = &num;    // 포인터에 num 주소 대입
+    *pnum = 10;    // 포인터로 변수 num에 10 
+ 
+    printf("변수명으로 num 값 출력 : %d\n", num);
+    printf("포인터로 num 값 출력 : %d\n", *pnum);
+ 
+    return 0;
+}
+
+3.
+int x = 7;        // 변수의 선언
+
+int *ptr = &x;    // 포인터의 선언
+
+int *pptr = &ptr; // 포인터의 참조
+
+4.
+int num01 = 1234;
+
+double num02 = 3.14;  
+
+int* ptr_num01 = &num01;
+
+double* ptr_num02 = &num02;  
+
+ 
+
+① printf("포인터의 크기는 %d입니다.\n", sizeof(ptr_num01));
+
+② printf("포인터 ptr_num01이 가리키고 있는 주소값은 %#x입니다.\n", ptr_num01);
+
+③ printf("포인터 ptr_num02가 가리키고 있는 주소값은 %#x입니다.\n", ptr_num02);
+
+printf("포인터 ptr_num01이 가리키고 있는 주소에 저장된 값은 %d입니다.\n", *ptr_num01);
+
+printf("포인터 ptr_num02가 가리키고 있는 주소에 저장된 값은 %f입니다.\n", *ptr_num02);
