@@ -1,7 +1,7 @@
 #define TSL1401_CLK 22
 #define TSL1401_SI 23
 #define TSL1401_AO A0
-#define NPIXELS 120
+#define NPIXELS 128
 
 byte Pixel[NPIXELS];    // Field for measured values <0-255>
 int LineSensor_Data[NPIXELS];
