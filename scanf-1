@@ -1,0 +1,54 @@
+ex 1
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main(void)
+{
+	int num;
+	scanf("%d", &num);
+}
+
+ex 2
+//scnaf의 잘못된 사용
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main(void)
+{
+	unsigned char age;
+	scanf("%d", &age);
+}
+
+// 해결 코드
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main(void)
+{
+	int temp;
+	scanf("%d", &temp);
+	age = (unsigned *)temp;
+}
+
+ex 3
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void main()
+{
+	int temp = 0;
+	while (1)
+	{
+		printf(" 나이를 입력하세용 : ");
+		scanf("%d", &temp);
+		rewind(stdin);
+		if (temp > 0 && temp < 200)
+		{
+			printf("나이 입력 성공!!! \n")
+			break;
+		}
+		else
+		{
+			printf("나이를 0 ~ 200 사이로 입력해 주세용 \n");
+		}
+	}
+	printf("입력하신 나이는 : %d 입니당. \n", temp);
+}
