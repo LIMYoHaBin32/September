@@ -10,7 +10,7 @@ void read_file(const char* filename, double X[], double Y[], double Angle[])
 
     if (file == NULL)
     {
-        printf("ÆÄÀÏÀ» Ã£À» ¼ö ¾ø¾î¿ë~\n");
+        printf("íŒŒì¼ì„ ì°¾ì„ ìˆ˜ ì—†ì–´ìš©~\n");
         return;
     }
 
@@ -156,7 +156,7 @@ int main(void)
     Equation(X, Y, a, b);
     for (int i = 0; i < n-1; i++)
     {
-        printf("Á÷¼±ÀÇ ¹æÁ¤½Ä : [%d ~ %d]: y = %lfx + %lf \n ", i, i + 1, a[i], b[i]);
+        printf("ì§ì„ ì˜ ë°©ì •ì‹ : [%d ~ %d]: y = %lfx + %lf \n ", i, i + 1, a[i], b[i]);
     }
     return 0;
 }
