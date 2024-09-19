@@ -1,0 +1,69 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void matrixAdd(int a[][3], int b[][3], int c[][3])
+{
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < 3; ++j)
+            c[i][j] = a[i][j] + b[i][j];
+}
+
+void scalarMultiply(int a[][3], int scalar, int c[][3])
+{
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < 3; ++j)
+            c[i][j] = a[i][j] * scalar;
+}
+
+void printMatrix(int a[][3])
+{
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j < 3; ++j)
+        {
+            printf("%5d", a[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void readMatrix(int a[][3])
+{
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j < 3; ++j)
+        {
+            scanf_s("%d", &a[i][j]);
+        }
+    }
+}
+
+int main(void)
+{
+    int A[3][3], B[3][3], C[3][3];
+
+    printf("(3 x 3) 행렬 A 입력 : \n");
+    readMatrix(A);
+
+    printf("(3 x 3) 행렬 B 입력: \n");
+    readMatrix(B);
+
+    matrixAdd(A, B, C);
+    printf("행렬 A와 B의 합:\n");
+    printMatrix(C);
+
+    int scalar;
+
+    printf("스칼라 값 입력: ");
+    scanf_s("%d", &scalar);
+
+    scalarMultiply(A, scalar, C);
+    printf("A에 대한 스칼라 곱:\n");
+    printMatrix(C);
+
+    scalarMultiply(B, scalar, C);
+    printf("B에 대한 스칼라 곱:\n");
+    printMatrix(C);
+
+    return 0;
+}
