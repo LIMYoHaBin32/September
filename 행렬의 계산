@@ -42,27 +42,27 @@ int main(void)
 {
     int A[3][3], B[3][3], C[3][3];
 
-    printf("(3 x 3) Çà·Ä A ÀÔ·Â : \n");
+    printf("(3 x 3) í–‰ë ¬ A ì…ë ¥ : \n");
     readMatrix(A);
 
-    printf("(3 x 3) Çà·Ä B ÀÔ·Â: \n");
+    printf("(3 x 3) í–‰ë ¬ B ì…ë ¥: \n");
     readMatrix(B);
 
     matrixAdd(A, B, C);
-    printf("Çà·Ä A¿Í BÀÇ ÇÕ:\n");
+    printf("í–‰ë ¬ Aì™€ Bì˜ í•©:\n");
     printMatrix(C);
 
     int scalar;
 
-    printf("½ºÄ®¶ó °ª ÀÔ·Â: ");
+    printf("ìŠ¤ì¹¼ë¼ ê°’ ì…ë ¥: ");
     scanf_s("%d", &scalar);
 
     scalarMultiply(A, scalar, C);
-    printf("A¿¡ ´ëÇÑ ½ºÄ®¶ó °ö:\n");
+    printf("Aì— ëŒ€í•œ ìŠ¤ì¹¼ë¼ ê³±:\n");
     printMatrix(C);
 
     scalarMultiply(B, scalar, C);
-    printf("B¿¡ ´ëÇÑ ½ºÄ®¶ó °ö:\n");
+    printf("Bì— ëŒ€í•œ ìŠ¤ì¹¼ë¼ ê³±:\n");
     printMatrix(C);
 
     return 0;
