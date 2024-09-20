@@ -1,0 +1,90 @@
+#define TSL1401_CLK 22  // Define CLK pin
+#define TSL1401_SI 23   // Define SI pin
+#define TSL1401_AO A0   // Define AO pin
+#define NPIXELS 128     // Define the number of pixels
+#define FASTADC 1       // Enable fast ADC
+#define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
+#define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
+
+byte Pixel[NPIXELS];
+byte threshold_data[NPIXELS]; 
+
+void line_threshold(int threshold)
+{
+  for(int i = 0; i < NPIXELS; ++i) 
+  {
+    if (Pixel[i] > threshold) 
+    {
+      threshold_data[i] = 255; 
+    }
+    else
+    {
+      threshold_data[i] = 0; 
+    }
+   
+  }
+}
+
+void setup()
+{
+    Serial.begin(115200);  
+    Serial.println("Camera Initialized");
+
+    pinMode(TSL1401_CLK, OUTPUT); 
+    pinMode(TSL1401_SI, OUTPUT);  
+
+    digitalWrite(TSL1401_CLK, LOW); 
+    digitalWrite(TSL1401_SI, LOW);  
+
+    #if FASTADC
+      
+      sbi(ADCSRA, ADPS2);
+      cbi(ADCSRA, ADPS1);
+      cbi(ADCSRA, ADPS0);
+    #endif
+}
+
+void read_TSL1401_camera(void)
+{
+    digitalWrite(TSL1401_SI, HIGH);
+    digitalWrite(TSL1401_CLK, HIGH);
+    delayMicroseconds(1);
+
+    digitalWrite(TSL1401_CLK, LOW);
+    digitalWrite(TSL1401_SI, LOW);
+    delayMicroseconds(1);
+
+    for(int i = 0; i < NPIXELS; ++i)
+    {
+        digitalWrite(TSL1401_CLK, HIGH);
+        delayMicroseconds(1);
+        Pixel[i] = analogRead(TSL1401_AO); 
+        digitalWrite(TSL1401_CLK, LOW);
+        delayMicroseconds(1);
+    }
+}
+
+void send_camera_data_serial()
+{
+    for(int i = 0; i < NPIXELS; ++i) 
+    {
+        Serial.print(Pixel[i]); 
+        Serial.print(",");
+        Serial.println(threshold_data[i]);
+    }
+ 
+    for(int i = 0; i < 64; ++i)
+    {
+        Serial.print(0);
+        Serial.print(",");
+        Serial.println(0);
+    }
+}
+
+void loop()
+{
+    read_TSL1401_camera();  
+    line_threshold(150);
+    send_camera_data_serial();
+    delay(100);                  
+}
